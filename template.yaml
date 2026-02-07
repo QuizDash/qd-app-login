@@ -18,6 +18,13 @@ Parameters:
     Type: String
     Default: "Your verification code"
 
+  AllowAdminCreateUserOnly:
+    Type: String
+    AllowedValues:
+      - True
+      - False
+    Default: False
+
 Resources:
 
   UserPool:
@@ -26,7 +33,7 @@ Resources:
     Properties:
       UserPoolName: !Sub "${AWS::StackName}-UserPool"
       AdminCreateUserConfig:
-        AllowAdminCreateUserOnly: False
+        AllowAdminCreateUserOnly: !Ref AllowAdminCreateUserOnly
       UsernameConfiguration:
         CaseSensitive: false
       Schema:
